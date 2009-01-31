@@ -29,7 +29,7 @@
 #include <QCryptographicHash>
 #include <QTimer>
 
-// #include <QDebug>
+#include <QDebug>
 
 LastFmSubmitter::LastFmSubmitter(QObject * parent) : QObject(parent) {
 	m_session = "";
@@ -55,7 +55,7 @@ void LastFmSubmitter::setSong(const MPDSong & s) {
 		if(s.secs() > 30)
 		{
 			m_scrobbleTimer->setInterval((s.secs() < 480 ? s.secs()/2 : 240) * 1000);
-			// qDebug() << "starting scrobble timer" << m_scrobbleTimer->interval();
+			qDebug() << "starting scrobble timer" << m_scrobbleTimer->interval();
 			m_scrobbleTimer->start();
 		}
 		if(!m_songQueue.isEmpty() && ensureHandshaked())
@@ -131,7 +131,7 @@ void LastFmSubmitter::doHandshake() {
 			QByteArray::number((uint)time(NULL)),
 		QCryptographicHash::Md5).toHex()
 	);
-	// qDebug() << hsUrl.toString();
+	qDebug() << hsUrl.toString();
 	m_netAccess->get(QNetworkRequest(hsUrl));
 }
 
@@ -168,5 +168,5 @@ void LastFmSubmitter::gotNetReply(QNetworkReply * reply) {
 		}
 	}
 	// What are you talking about then?
-	// qDebug() << "Reply:" << reqUrl.toString() << data;
+	qDebug() << "Reply:" << reqUrl.toString() << data;
 }
