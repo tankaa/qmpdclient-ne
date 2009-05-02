@@ -1,5 +1,5 @@
 # installation prefix on *nix/osx
-PREFIX = /usr/local
+PREFIX = /usr
 
 # Most people need not muck about below here
 #!contains(QT_MAJOR_VERSION, 4):error(QMPDClient requires Qt 4)
