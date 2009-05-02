@@ -226,6 +226,18 @@ system(which desktop-file-install > /dev/null) {
 	desktop_file.extra = desktop-file-install qmpdclient.desktop
 	desktop_file.path=/
 	INSTALLS += desktop_file
+	
+	#install icons
+	icon16.path=$$PREFIX/share/icons/hicolor/16x16/apps
+	icon16.extra = cp -f ./icons/qmpdclient16.png $(INSTALL_ROOT)$$icon16.path/qmpdclient.png
+	icon22.path=$$PREFIX/share/icons/hicolor/22x22/apps
+	icon22.extra = cp -f ./icons/qmpdclient22.png $(INSTALL_ROOT)$$icon22.path/qmpdclient.png
+	icon48.path=$$PREFIX/share/icons/hicolor/48x48/apps
+	icon48.extra = cp -f ./icons/qmpdclient48.png $(INSTALL_ROOT)$$icon48.path/qmpdclient.png
+	iconSVG.path=$$PREFIX/share/icons/hicolor/scalable/apps
+	iconSVG.extra = cp -f ./icons/svg/qmpdclient.svg $(INSTALL_ROOT)$$iconSVG.path/qmpdclient.svg
+	
+	INSTALLS += icon16 icon22 icon48 iconSVG
 } else {
 	message(.desktop file support is not available; install desktop-file-utils)
 }
